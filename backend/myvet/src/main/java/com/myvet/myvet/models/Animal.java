@@ -1,21 +1,32 @@
 package com.myvet.myvet.models;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name="tb_animal")
 public class Animal {
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String nome;
 
-    private Pessoa pessoa; // TODO: Long pessoaID ou Pessoa?
+    @ManyToOne
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa;
+
+    public Animal() {
+    }
+
+    public Animal(Pessoa pessoa, String nome, Long id) {
+        this.pessoa = pessoa;
+        this.nome = nome;
+        this.id = id;
+    }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -24,5 +35,9 @@ public class Animal {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Pessoa getPessoa(){
+        return this.pessoa;
     }
 }
