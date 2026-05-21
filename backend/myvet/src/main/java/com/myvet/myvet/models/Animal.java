@@ -3,17 +3,18 @@ package com.myvet.myvet.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="tb_animal")
+@Table(name = "tb_animal")
 public class Animal {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
     private String nome;
 
     @ManyToOne
-    @JoinColumn(name = "pessoa_id")
+    @JoinColumn(name = "pessoaId")
     private Pessoa pessoa;
 
     public Animal() {
@@ -37,7 +38,11 @@ public class Animal {
         this.nome = nome;
     }
 
-    public Pessoa getPessoa(){
+    public Pessoa getPessoa() {
         return this.pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 }

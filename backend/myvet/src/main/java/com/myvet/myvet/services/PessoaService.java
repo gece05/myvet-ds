@@ -1,7 +1,11 @@
 package com.myvet.myvet.services;
 
+import java.util.Arrays;
 import java.util.List;
 
+import com.myvet.myvet.dtos.animal.AnimalResponseDTO;
+import com.myvet.myvet.models.Animal;
+import com.myvet.myvet.repositories.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +21,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class PessoaService {
     @Autowired
     private PessoaRepository pessoaRepository;
+
+    @Autowired
+    private AnimalRepository animalRepository;
 
     @Transactional(readOnly = true)
     public List<PessoaResponseDTO> listar(){
@@ -37,16 +44,27 @@ public class PessoaService {
         return new PessoaResponseDTO(pessoa);
     }
 
+    @Transactional(readOnly = true)
+    public List<AnimalResponseDTO> buscarAnimais(Long id){
+        List<Animal> lista = animalRepository.findAllByPessoaId(id);
+
+        return lista.stream().map(AnimalResponseDTO::new).toList();
+    }
+
     @Transactional
     public PessoaResponseDTO inserir(PessoaRequestDTO dto){
-        if(pessoaRepository.existsByCpf(dto.getCpf())){
+        String cpf = dto.getCpf().replace(".","").replace("-","");
+
+        System.out.println(cpf);
+
+        if(pessoaRepository.existsByCpf(cpf)){
             throw new DatabaseException("Já existe uma pessoa com este CPF. CPF: " + dto.getCpf()); 
         }
 
         Pessoa entity = new Pessoa();
 
         entity.setNome(dto.getNome());
-        entity.setCpf(dto.getCpf());
+        entity.setCpf(cpf);
         entity.setEmail(dto.getEmail());
 
         entity = pessoaRepository.save(entity);

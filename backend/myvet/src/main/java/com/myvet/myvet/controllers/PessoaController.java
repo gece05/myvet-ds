@@ -2,6 +2,7 @@ package com.myvet.myvet.controllers;
 
 import java.util.List;
 
+import com.myvet.myvet.dtos.animal.AnimalResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +38,13 @@ public class PessoaController {
     @GetMapping("/{id}")
     public ResponseEntity<PessoaResponseDTO> buscarPorID(@PathVariable Long id) {
         PessoaResponseDTO entity = pessoaService.buscarPorId(id);
+
+        return ResponseEntity.status(HttpStatus.OK).body(entity);
+    }
+
+    @GetMapping("/animais/{id}")
+    public ResponseEntity<List<AnimalResponseDTO>> buscarAnimaisPorId(@PathVariable Long id) {
+        List<AnimalResponseDTO> entity = pessoaService.buscarAnimais(id);
 
         return ResponseEntity.status(HttpStatus.OK).body(entity);
     }
