@@ -17,7 +17,7 @@ import com.myvet.myvet.dtos.pessoa.PessoaRequestDTO;
 import com.myvet.myvet.dtos.pessoa.PessoaResponseDTO;
 import com.myvet.myvet.services.PessoaService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody;
 import jakarta.validation.Valid;
 
 @RestController
@@ -41,7 +41,7 @@ public class PessoaController {
         return ResponseEntity.status(HttpStatus.OK).body(entity);
     }
 
-    @GetMapping("/{cpf}")
+    @GetMapping("/cpf/{cpf}")
     public ResponseEntity<PessoaResponseDTO> buscarPorID(@PathVariable String cpf) {
         PessoaResponseDTO entity = pessoaService.buscarPorCpf(cpf);
 
