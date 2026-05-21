@@ -16,7 +16,7 @@ public class PessoaRequestDTO {
     @NotBlank(message = "O email é obrigatório.")
     private String email;
 
-    public PessoaRequestDTO(){
+    public PessoaRequestDTO() {
 
     }
 
@@ -38,6 +38,16 @@ public class PessoaRequestDTO {
         return email;
     }
 
-    
-    
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }

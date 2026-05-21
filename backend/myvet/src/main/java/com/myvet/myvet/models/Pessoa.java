@@ -22,8 +22,7 @@ public class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(Long id, String nome, String cpf, String email) {
-        this.id = id;
+    public Pessoa(String nome, String cpf, String email) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
