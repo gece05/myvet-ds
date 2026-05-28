@@ -16,6 +16,42 @@ public class Atendimento {
     private LocalDate data;
 
     // private Situacao situacao;
-    private Double valor_servico;
+
+    @Column(nullable = false)
+    private Double valorServico;
+
+    @ManyToOne()
+    @JoinColumn(name = "servico_id") // TODO: rever com odilon
+    private Servico servico;
+
+    public Long getId() {
+        return id;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public Double getValorServico() {
+        return valorServico;
+    }
+
+    public void setValorServico(Double valorServico) {
+        this.valorServico = valorServico;
+    }
+
+    public Servico getServico() {
+        return servico;
+    }
+
+    public void setServico(Servico servico) {
+        this.servico = servico;
+    }
+
+    
 
 }
