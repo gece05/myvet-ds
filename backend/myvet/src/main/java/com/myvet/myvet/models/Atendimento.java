@@ -1,5 +1,6 @@
 package com.myvet.myvet.models;
 
+import com.myvet.myvet.enums.TipoSituacao;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -15,14 +16,23 @@ public class Atendimento {
     @Column(name = "data_marcada", nullable = false)
     private LocalDate data;
 
-    // private Situacao situacao;
+    @Column(nullable = false)
+    private TipoSituacao situacao;
 
     @Column(nullable = false)
     private Double valorServico;
 
-    @ManyToOne()
-    @JoinColumn(name = "servico_id") // TODO: rever com odilon
+    @ManyToOne
+    @JoinColumn(name = "servico_id")
     private Servico servico;
+
+    @OneToOne
+    @JoinColumn(name = "pessoa_cliente_id")
+    private Pessoa pessoaCliente;
+
+    @OneToOne
+    @JoinColumn(name = "pessoa_funcionario_id")
+    private Pessoa pessoaFuncionario;
 
     public Long getId() {
         return id;
@@ -52,6 +62,27 @@ public class Atendimento {
         this.servico = servico;
     }
 
-    
+    public TipoSituacao getSituacao() {
+        return situacao;
+    }
 
+    public void setSituacao(TipoSituacao situacao) {
+        this.situacao = situacao;
+    }
+
+    public Pessoa getPessoaFuncionario() {
+        return pessoaFuncionario;
+    }
+
+    public void setPessoaFuncionario(Pessoa pessoaFuncionario) {
+        this.pessoaFuncionario = pessoaFuncionario;
+    }
+
+    public Pessoa getPessoaCliente() {
+        return pessoaCliente;
+    }
+
+    public void setPessoaCliente(Pessoa pessoaCliente) {
+        this.pessoaCliente = pessoaCliente;
+    }
 }

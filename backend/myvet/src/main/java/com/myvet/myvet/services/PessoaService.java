@@ -55,8 +55,6 @@ public class PessoaService {
     public PessoaResponseDTO inserir(PessoaRequestDTO dto){
         String cpf = dto.getCpf().replace(".","").replace("-","");
 
-        System.out.println(cpf);
-
         if(pessoaRepository.existsByCpf(cpf)){
             throw new DatabaseException("Já existe uma pessoa com este CPF. CPF: " + dto.getCpf()); 
         }
