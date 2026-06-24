@@ -27,8 +27,8 @@ public class Atendimento {
     private Servico servico;
 
     @OneToOne
-    @JoinColumn(name = "pessoa_cliente_id")
-    private Pessoa pessoaCliente;
+    @JoinColumn(name = "animal_id")
+    private Animal animal;
 
     @OneToOne
     @JoinColumn(name = "pessoa_funcionario_id")
@@ -78,11 +78,11 @@ public class Atendimento {
         this.pessoaFuncionario = pessoaFuncionario;
     }
 
-    public Pessoa getPessoaCliente() {
-        return pessoaCliente;
+    public Animal getAnimal() {
+        return animal;
     }
 
-    public void setPessoaCliente(Pessoa pessoaCliente) {
-        this.pessoaCliente = pessoaCliente;
+    public void setPessoaCliente(Animal animal) {
+        this.animal = animal;
     }
 }

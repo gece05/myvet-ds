@@ -16,7 +16,7 @@ public class AtendimentoResponseDTO {
 
     private Long servicoId;
 
-    private Long pessoaClienteId;
+    private Long animalId;
 
     private Long pessoaFuncionarioId;
 
@@ -28,7 +28,7 @@ public class AtendimentoResponseDTO {
         this.data = ent.getData();
         this.valorServico = ent.getValorServico();
         this.servicoId = ent.getServico().getId();
-        this.pessoaClienteId = ent.getPessoaCliente().getId();
+        this.animalId = ent.getAnimal().getId();
         this.pessoaFuncionarioId = ent.getPessoaFuncionario().getId();
     }
 
@@ -48,8 +48,8 @@ public class AtendimentoResponseDTO {
         return servicoId;
     }
 
-    public Long getPessoaClienteId() {
-        return pessoaClienteId;
+    public Long getAnimalId() {
+        return animalId;
     }
 
     public Long getPessoaFuncionarioId() {
