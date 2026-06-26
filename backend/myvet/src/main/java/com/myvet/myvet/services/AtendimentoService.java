@@ -1,10 +1,5 @@
 package com.myvet.myvet.services;
 
-import com.myvet.myvet.repositories.AnimalRepository;
-import com.myvet.myvet.repositories.AtendimentoRepository;
-import com.myvet.myvet.repositories.PessoaRepository;
-import com.myvet.myvet.repositories.ServicoRepository;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +9,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.myvet.myvet.dtos.atendimento.AtendimentoRequestDTO;
 import com.myvet.myvet.dtos.atendimento.AtendimentoResponseDTO;
 import com.myvet.myvet.exceptions.ResourceNotFoundException;
+import com.myvet.myvet.models.Animal;
 import com.myvet.myvet.models.Atendimento;
 import com.myvet.myvet.models.Pessoa;
 import com.myvet.myvet.models.Servico;
-import com.myvet.myvet.models.Animal;
+import com.myvet.myvet.repositories.AnimalRepository;
+import com.myvet.myvet.repositories.AtendimentoRepository;
+import com.myvet.myvet.repositories.PessoaRepository;
+import com.myvet.myvet.repositories.ServicoRepository;
 
 @Service
 public class AtendimentoService {
@@ -49,17 +48,17 @@ public class AtendimentoService {
     }
 
     @Transactional(readOnly = true)
-    public AtendimentoResponseDTO buscarPorFuncionarioId(Long id){
-        Atendimento atd = atendimentoRepository.findByPessoaFuncionarioId(id).orElseThrow(() -> new ResourceNotFoundException("Atendimento não encontrado com ID: " + id));
+    public List<AtendimentoResponseDTO> buscarPorFuncionarioId(Long id){
+        List<Atendimento> atds = atendimentoRepository.findAllByPessoaFuncionarioId(id).orElseThrow(() -> new ResourceNotFoundException("Atendimento não encontrado com ID: " + id));
 
-        return new AtendimentoResponseDTO(atd);
+        return atds.stream().map(AtendimentoResponseDTO::new).toList();
     }
 
     @Transactional(readOnly = true)
-    public AtendimentoResponseDTO buscarPorAnimalId(Long id){
-        Atendimento atd = atendimentoRepository.findByAnimalId(id).orElseThrow(() -> new ResourceNotFoundException("Atendimento não encontrado com ID: " + id));
+    public List<AtendimentoResponseDTO> buscarPorAnimalId(Long id){
+        List<Atendimento> atds = atendimentoRepository.findAllByAnimalId(id).orElseThrow(() -> new ResourceNotFoundException("Atendimento não encontrado com ID: " + id));
 
-        return new AtendimentoResponseDTO(atd);
+        return atds.stream().map(AtendimentoResponseDTO::new).toList();
     }
 
     @Transactional

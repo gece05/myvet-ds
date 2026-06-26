@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.myvet.myvet.dtos.atendimento.AtendimentoResponseDTO;
 import com.myvet.myvet.dtos.atendimento.AtendimentoRequestDTO;
+import com.myvet.myvet.dtos.atendimento.AtendimentoResponseDTO;
 import com.myvet.myvet.services.AtendimentoService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
 
 @RestController
@@ -42,15 +42,15 @@ public class AtendimentoController {
     }
 
     @GetMapping("/animal/{id}")
-    public ResponseEntity<AtendimentoResponseDTO> buscarPorAnimalId(@PathVariable Long id) {
-        AtendimentoResponseDTO entity = atendimentoService.buscarPorAnimalId(id);
+    public ResponseEntity<List<AtendimentoResponseDTO>> buscarPorAnimalId(@PathVariable Long id) {
+        List<AtendimentoResponseDTO> entity = atendimentoService.buscarPorAnimalId(id);
 
         return ResponseEntity.status(HttpStatus.OK).body(entity);
     }
 
     @GetMapping("/func/{id}")
-    public ResponseEntity<AtendimentoResponseDTO> buscarPorFuncId(@PathVariable Long id) {
-        AtendimentoResponseDTO entity = atendimentoService.buscarPorFuncionarioId(id);
+    public ResponseEntity<List<AtendimentoResponseDTO>> buscarPorFuncId(@PathVariable Long id) {
+        List<AtendimentoResponseDTO> entity = atendimentoService.buscarPorFuncionarioId(id);
 
         return ResponseEntity.status(HttpStatus.OK).body(entity);
     }
