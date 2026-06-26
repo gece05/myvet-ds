@@ -5,7 +5,7 @@ import com.myvet.myvet.models.Atendimento;
 
 import java.time.LocalDate;
 
-@JsonPropertyOrder({"id","data","valorServico","servicoId","pessoaClienteId","pessoaFuncionarioId"})
+@JsonPropertyOrder({"id","data","valorServico","servicoId","animalId","pessoaFuncionarioId"})
 public class AtendimentoResponseDTO {
 
     private Long id;

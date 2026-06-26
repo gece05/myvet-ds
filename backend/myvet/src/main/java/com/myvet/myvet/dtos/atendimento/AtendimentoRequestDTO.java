@@ -19,8 +19,8 @@ public class AtendimentoRequestDTO {
     @NotNull(message = "O atendimento precisa estar relacionado a um serviço.")
     private Long servico_id;
 
-    @NotNull(message = "O atendimento precisa estar relacionado a um cliente.")
-    private Long pessoa_cliente_id;
+    @NotNull(message = "O atendimento precisa estar relacionado a um animal.")
+    private Long animal_id;
 
     @NotNull(message = "O atendimento precisa estar relacionado a um funcionário.")
     private Long pessoa_funcionario_id;
@@ -28,12 +28,12 @@ public class AtendimentoRequestDTO {
     public AtendimentoRequestDTO() {
     }
 
-    public AtendimentoRequestDTO(LocalDate data, Double valorServico, TipoSituacao situacao, Long servico_id, Long pessoa_cliente_id, Long pessoa_funcionario_id) {
+    public AtendimentoRequestDTO(LocalDate data, Double valorServico, TipoSituacao situacao, Long servico_id, Long animal_id, Long pessoa_funcionario_id) {
         this.data = data;
         this.valorServico = valorServico;
         this.situacao = situacao;
         this.servico_id = servico_id;
-        this.pessoa_cliente_id = pessoa_cliente_id;
+        this.animal_id = animal_id;
         this.pessoa_funcionario_id = pessoa_funcionario_id;
     }
 
@@ -53,8 +53,8 @@ public class AtendimentoRequestDTO {
         return servico_id;
     }
 
-    public Long getPessoa_cliente_id() {
-        return pessoa_cliente_id;
+    public Long getAnimal_id() {
+        return animal_id;
     }
 
     public Long getPessoa_funcionario_id() {

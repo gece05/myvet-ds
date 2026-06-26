@@ -82,7 +82,7 @@ public class Atendimento {
         return animal;
     }
 
-    public void setPessoaCliente(Animal animal) {
+    public void setAnimal(Animal animal) {
         this.animal = animal;
     }
 }
