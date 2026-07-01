@@ -3,11 +3,12 @@ package com.myvet.myvet.dtos.animal;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.myvet.myvet.models.Animal;
 
-@JsonPropertyOrder({"id","nome","pessoaId"})
+@JsonPropertyOrder({"id","nome","pessoaId", "nomePessoa"})
 public class AnimalResponseDTO{
     private Long id;
     private String nome;
     private Long pessoaId;
+    private String nomePessoa;
 
     public AnimalResponseDTO(){
 
@@ -17,6 +18,7 @@ public class AnimalResponseDTO{
         this.id = entity.getId();
         this.nome = entity.getNome();
         this.pessoaId = entity.getPessoa().getId();
+        this.nomePessoa = entity.getPessoa().getNome();
     }
 
     public Long getId() {
@@ -30,4 +32,8 @@ public class AnimalResponseDTO{
     public Long getPessoaId() {
         return pessoaId;
     }  
+
+    public String getNomePessoa() {
+        return nomePessoa;
+    }
 }
