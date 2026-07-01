@@ -1,15 +1,15 @@
 package com.myvet.myvet.services;
 
-import com.myvet.myvet.dtos.produto.ProdutoRequestDTO;
-import com.myvet.myvet.dtos.produto.ProdutoResponseDTO;
-import com.myvet.myvet.models.Produto;
-import com.myvet.myvet.repositories.PessoaRepository;
-import com.myvet.myvet.repositories.ProdutoRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.myvet.myvet.dtos.produto.ProdutoRequestDTO;
+import com.myvet.myvet.dtos.produto.ProdutoResponseDTO;
+import com.myvet.myvet.models.Produto;
+import com.myvet.myvet.repositories.ProdutoRepository;
 
 @Service
 public class ProdutoService {
@@ -35,8 +35,10 @@ public class ProdutoService {
     public ProdutoResponseDTO inserir(ProdutoRequestDTO dto){
         Produto entity = new Produto();
 
+        entity.setNome(dto.getNome());
         entity.setValor(dto.getValor());
         entity.setDescricao(dto.getDescricao());
+        entity.setQtd_estoque(dto.getQtdEstoque());
 
         entity = produtoRepository.save(entity);
 
@@ -46,8 +48,10 @@ public class ProdutoService {
     public ProdutoResponseDTO alterar(Long id, ProdutoRequestDTO dto){
         Produto entity = produtoRepository.findById(id).orElseThrow();
 
+        entity.setNome(dto.getNome());
         entity.setValor(dto.getValor());
         entity.setDescricao(dto.getDescricao());
+        entity.setQtd_estoque(dto.getQtdEstoque());
 
         entity = produtoRepository.save(entity);
 
