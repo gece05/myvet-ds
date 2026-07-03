@@ -15,6 +15,7 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")  // Aplica para todos os endpoints
                         .allowedOrigins("http://localhost:4200")  // URL do seu frontend
+                        .allowedOrigins("https://myvetfrontend.netlify.app")
                         .allowedMethods("GET", "POST","PATCH", "PUT", "DELETE", "OPTIONS")  // Métodos permitidos
                         .allowedHeaders("*")  // Headers permitidos
                         .allowCredentials(true)  // Permite enviar cookies/credenciais
