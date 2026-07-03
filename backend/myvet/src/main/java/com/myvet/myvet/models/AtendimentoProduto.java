@@ -24,11 +24,11 @@ public class AtendimentoProduto {
     private Double valorProduto;
 
     @ManyToOne
-    @JoinColumn(name = "atendimento_id")
+    @JoinColumn(name = "atendimento_id", nullable = false)
     private Atendimento atendimento;
 
     @ManyToOne
-    @JoinColumn(name = "produto_id")
+    @JoinColumn(name = "produto_id", nullable = false)
     private Produto produto;
 
     public Long getId() {

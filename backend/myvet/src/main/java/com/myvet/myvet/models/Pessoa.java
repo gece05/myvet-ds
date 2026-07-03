@@ -1,6 +1,15 @@
 package com.myvet.myvet.models;
 
-import jakarta.persistence.*;
+import com.myvet.myvet.enums.TipoPessoa;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_pessoa")
@@ -13,19 +22,24 @@ public class Pessoa {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false, length = 14)
+    @Column(nullable = false, length = 14, unique = true)
     private String cpf;
 
     @Column(nullable = false)
     private String email;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo", nullable = false)
+    private TipoPessoa tipo;
+
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String cpf, String email) {
+    public Pessoa(String nome, String cpf, String email, TipoPessoa tipo) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
+        this.tipo = tipo;
     }
 
     public Long getId() {
@@ -44,6 +58,10 @@ public class Pessoa {
         return email;
     }
 
+    public TipoPessoa getTipo() {
+        return tipo;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -54,5 +72,9 @@ public class Pessoa {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setTipo(TipoPessoa tipo) {
+        this.tipo = tipo;
     }
 }

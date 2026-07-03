@@ -1,6 +1,9 @@
 package com.myvet.myvet.dtos.pessoa;
 
+import com.myvet.myvet.enums.TipoPessoa;
+
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class PessoaRequestDTO {
@@ -16,14 +19,19 @@ public class PessoaRequestDTO {
     @NotBlank(message = "O email é obrigatório.")
     private String email;
 
+    @NotNull(message = "O tipo da pessoa é obrigatório.")
+    private TipoPessoa tipo;
+    
+
     public PessoaRequestDTO() {
 
     }
 
-    public PessoaRequestDTO(String nome, String cpf, String email) {
+    public PessoaRequestDTO(String nome, String cpf, String email, TipoPessoa tipo) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
+        this.tipo = tipo;
     }
 
     public String getNome() {
@@ -38,6 +46,10 @@ public class PessoaRequestDTO {
         return email;
     }
 
+    public TipoPessoa getTipo() {
+        return tipo;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -48,6 +60,10 @@ public class PessoaRequestDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setTipo(TipoPessoa tipo) {
+        this.tipo = tipo;
     }
 
 }

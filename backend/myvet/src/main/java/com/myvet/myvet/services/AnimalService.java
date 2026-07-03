@@ -3,7 +3,6 @@ package com.myvet.myvet.services;
 import com.myvet.myvet.dtos.animal.AnimalRequestDTO;
 import com.myvet.myvet.dtos.animal.AnimalResponseDTO;
 import com.myvet.myvet.dtos.pessoa.PessoaResponseDTO;
-import com.myvet.myvet.exceptions.DatabaseException;
 import com.myvet.myvet.exceptions.ResourceNotFoundException;
 import com.myvet.myvet.models.Animal;
 import com.myvet.myvet.models.Pessoa;

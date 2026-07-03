@@ -1,9 +1,18 @@
 package com.myvet.myvet.models;
 
-import com.myvet.myvet.enums.TipoSituacao;
-import jakarta.persistence.*;
-
 import java.time.LocalDate;
+
+import com.myvet.myvet.enums.TipoSituacao;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_atendimento")
@@ -33,6 +42,7 @@ public class Atendimento {
     @OneToOne
     @JoinColumn(name = "pessoa_funcionario_id")
     private Pessoa pessoaFuncionario;
+    
 
     public Long getId() {
         return id;

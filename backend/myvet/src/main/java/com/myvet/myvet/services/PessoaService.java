@@ -1,7 +1,7 @@
 package com.myvet.myvet.services;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import com.myvet.myvet.dtos.animal.AnimalResponseDTO;
 import com.myvet.myvet.models.Animal;
@@ -26,37 +26,37 @@ public class PessoaService {
     private AnimalRepository animalRepository;
 
     @Transactional(readOnly = true)
-    public List<PessoaResponseDTO> listar(){
+    public List<PessoaResponseDTO> listar() {
         return pessoaRepository.findAll().stream().map(PessoaResponseDTO::new).toList();
     }
 
     @Transactional(readOnly = true)
-    public PessoaResponseDTO buscarPorId(Long id){
+    public PessoaResponseDTO buscarPorId(Long id) {
         Pessoa pessoa = pessoaRepository.findById(id).orElseThrow(/* TODO: Exception */);
 
         return new PessoaResponseDTO(pessoa);
     }
 
     @Transactional(readOnly = true)
-    public PessoaResponseDTO buscarPorCpf(String cpf){
+    public PessoaResponseDTO buscarPorCpf(String cpf) {
         Pessoa pessoa = pessoaRepository.findByCpf(cpf).orElseThrow(/* TODO: Exception */);
 
         return new PessoaResponseDTO(pessoa);
     }
 
     @Transactional(readOnly = true)
-    public List<AnimalResponseDTO> buscarAnimais(Long id){
+    public List<AnimalResponseDTO> buscarAnimais(Long id) {
         List<Animal> lista = animalRepository.findAllByPessoaId(id);
 
         return lista.stream().map(AnimalResponseDTO::new).toList();
     }
 
     @Transactional
-    public PessoaResponseDTO inserir(PessoaRequestDTO dto){
-        String cpf = dto.getCpf().replace(".","").replace("-","");
+    public PessoaResponseDTO inserir(PessoaRequestDTO dto) {
+        String cpf = dto.getCpf().replace(".", "").replace("-", "");
 
-        if(pessoaRepository.existsByCpf(cpf)){
-            throw new DatabaseException("Já existe uma pessoa com este CPF. CPF: " + dto.getCpf()); 
+        if (pessoaRepository.existsByCpf(cpf)) {
+            throw new DatabaseException("Já existe uma pessoa com este CPF. CPF: " + dto.getCpf());
         }
 
         Pessoa entity = new Pessoa();
@@ -64,6 +64,7 @@ public class PessoaService {
         entity.setNome(dto.getNome());
         entity.setCpf(cpf);
         entity.setEmail(dto.getEmail());
+        entity.setTipo(dto.getTipo());
 
         entity = pessoaRepository.save(entity);
 
@@ -71,21 +72,29 @@ public class PessoaService {
     }
 
     @Transactional
-    public PessoaResponseDTO alterar(Long id, PessoaRequestDTO dto){
-        Pessoa pessoa = pessoaRepository.findById(id).orElseThrow(/*TODO: Exception */);
+    public PessoaResponseDTO alterar(Long id, PessoaRequestDTO dto) {
+        Pessoa pessoa = pessoaRepository.findById(id).orElseThrow(/* TODO: Exception */);
+
+        String cpf = dto.getCpf().replace(".", "").replace("-", "");
+
+        Optional<Pessoa> pessoaComMesmoCpf = pessoaRepository.findByCpf(cpf);
+        if (pessoaComMesmoCpf.isPresent() && !pessoaComMesmoCpf.get().getId().equals(id)) {
+            throw new DatabaseException("Já existe uma pessoa com este CPF. CPF: " + dto.getCpf());
+        }
 
         pessoa.setNome(dto.getNome());
-        pessoa.setCpf(dto.getCpf());
+        pessoa.setCpf(cpf);
         pessoa.setEmail(dto.getEmail());
+        pessoa.setTipo(dto.getTipo());
 
         pessoa = pessoaRepository.save(pessoa);
 
-        return new PessoaResponseDTO(pessoa);        
+        return new PessoaResponseDTO(pessoa);
     }
 
     @Transactional
-    public void excluir(Long id){
-        if(!pessoaRepository.existsById(id)){
+    public void excluir(Long id) {
+        if (!pessoaRepository.existsById(id)) {
             /* throw Exception */
         }
 
