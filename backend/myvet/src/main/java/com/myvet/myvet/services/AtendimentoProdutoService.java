@@ -33,6 +33,11 @@ public class AtendimentoProdutoService {
         return lista.stream().map(AtendimentoProdutoResponse::new).toList();
     }
 
+    public List<AtendimentoProdutoResponse> listarAll() {
+        List<AtendimentoProduto> lista = atendimentoProdutoRepository.findAll();
+        return lista.stream().map(AtendimentoProdutoResponse::new).toList();
+    }
+
     @Transactional
     public AtendimentoProdutoResponse inserir(AtendimentoProdutoRequest dto) {
         if (dto.getQuantidade() == null || dto.getQuantidade() <= 0) {

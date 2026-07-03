@@ -1,9 +1,12 @@
 package com.myvet.myvet.models;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.myvet.myvet.enums.TipoSituacao;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,7 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -35,14 +38,24 @@ public class Atendimento {
     @JoinColumn(name = "servico_id")
     private Servico servico;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "animal_id")
     private Animal animal;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "pessoa_funcionario_id")
     private Pessoa pessoaFuncionario;
-    
+
+    @OneToMany(mappedBy = "atendimento", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AtendimentoProduto> produtos = new ArrayList<>();
+
+    public List<AtendimentoProduto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<AtendimentoProduto> produtos) {
+        this.produtos = produtos;
+    }
 
     public Long getId() {
         return id;
