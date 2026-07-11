@@ -38,8 +38,8 @@ O sistema busca facilitar o gerenciamento das atividades de uma clínica veterin
 
 O projeto está dividido em duas partes principais:
 
-- `backend/https://myvet-ds.onrender.com/swagger-ui/index.html` ? API REST desenvolvida com Spring Boot
-- `frontend/https://myvetfrontend.netlify.app/clientes` ? Interface web desenvolvida com Angular
+- `backend/https://myvet-ds.onrender.com/swagger-ui/index.html` API REST desenvolvida com Spring Boot
+- `frontend/https://myvetfrontend.netlify.app/clientes` Interface web desenvolvida com Angular
 
 ## Finalidade Acadêmica
 
