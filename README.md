@@ -1,8 +1,8 @@
 # MyVet
 
-O **MyVet** é um projeto desenvolvido para a disciplina de Desenvolvimento de Sistemas, com o objetivo de criar um sistema web para gerenciamento de uma clínica veterinária.
+O **MyVet** Ã© um projeto desenvolvido para a disciplina de Desenvolvimento de Sistemas, com o objetivo de criar um sistema web para gerenciamento de uma clÃ­nica veterinÃ¡ria.
 
-A aplicação foi desenvolvida utilizando:
+A aplicaÃ§Ã£o foi desenvolvida utilizando:
 
 - **Spring Boot** no backend
 - **Angular** no frontend
@@ -10,15 +10,15 @@ A aplicação foi desenvolvida utilizando:
 
 ## Objetivo
 
-O sistema busca facilitar o gerenciamento das atividades de uma clínica veterinária, permitindo o controle de informações relacionadas a clientes, animais, atendimentos e serviços oferecidos.
+O sistema busca facilitar o gerenciamento das atividades de uma clÃ­nica veterinÃ¡ria, permitindo o controle de informaÃ§Ãµes relacionadas a clientes, animais, atendimentos e serviÃ§os oferecidos.
 
-## Funcionalidades Básicas
+## Funcionalidades BÃ¡sicas
 
 - Cadastro de clientes
 - Cadastro de animais
 - Gerenciamento de consultas
-- Controle de serviços veterinários
-- Interface web para interação com o sistema
+- Controle de serviÃ§os veterinÃ¡rios
+- Interface web para interaÃ§Ã£o com o sistema
 
 ## Tecnologias Utilizadas
 
@@ -36,21 +36,17 @@ O sistema busca facilitar o gerenciamento das atividades de uma clínica veteriná
 
 ## Estrutura do Projeto
 
-O projeto está dividido em duas partes principais:
+O projeto estÃ¡ dividido em duas partes principais:
 
-- `backend/` ? API REST desenvolvida com Spring Boot
-- `frontend/` ? Interface web desenvolvida com Angular
+- `backend/https://myvet-ds.onrender.com/swagger-ui/index.html` ? API REST desenvolvida com Spring Boot
+- `frontend/https://myvetfrontend.netlify.app/clientes` ? Interface web desenvolvida com Angular
 
-## Finalidade Acadêmica
+## Finalidade AcadÃªmica
 
-Este projeto foi desenvolvido com fins acadêmicos para aplicar conceitos de:
+Este projeto foi desenvolvido com fins acadÃªmicos para aplicar conceitos de:
 
 - Desenvolvimento web
 - APIs REST
-- Integração frontend/backend
-- Persistência de dados
+- IntegraÃ§Ã£o frontend/backend
+- PersistÃªncia de dados
 - Arquitetura de sistemas
-
-## Autor
-
-Projeto desenvolvido para a disciplina de Desenvolvimento de Sistemas.
